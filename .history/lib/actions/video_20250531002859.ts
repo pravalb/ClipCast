@@ -39,7 +39,7 @@ const validateWithArcjet = async ( fingerprint: string) => {
         fixedWindow({
             mode: 'LIVE',
             window: '1m',
-            max: 2,
+            max: 1,
             characteristics: ['fingerprint']
         })
     )
@@ -89,7 +89,7 @@ export const getThumbnailUploadUrl = withErrorHandling(
 export const saveVideoDetails = withErrorHandling(
   async (videoDetails: VideoDetails) => {
     const userId = await getSessionUserId();
-    await validateWithArcjet(userId);
+    //await validateWithArcjet(userId);
     await apiFetch(
       `${VIDEO_STREAM_BASE_URL}/${BUNNY_LIBRARY_ID}/videos/${videoDetails.videoId}`,
       {

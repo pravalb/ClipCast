@@ -1,13 +1,10 @@
-import aj, {
-  ArcjetDecision,
-  shield,
-  slidingWindow,
-  validateEmail,
-} from "@/lib/arject";
-import ip from "@arcjet/ip";
+import aj, { slidingWindow, validateEmail, ArcjetDecision, shield } from "@/lib/arject";
 import { auth } from "@/lib/auth";
 import { toNextJsHandler } from "better-auth/next-js";
 import { NextRequest } from "next/server";
+import ip from "@arcjet/ip";
+
+const authHandlers = toNextJsHandler(auth.handler)
 
 const emailValidation = aj.withRule(
   validateEmail({
@@ -57,23 +54,4 @@ const protectedAuth = async (req: NextRequest): Promise<ArcjetDecision> => {
   return shieldValidation.protect(req);
 };
 
-const authHandlers = toNextJsHandler(auth.handler);
-
-export const { GET } = authHandlers;
-
-export const POST = async (req: NextRequest) => {
-  const decision = await protectedAuth(req);
-  if (decision.isDenied()) {
-    if (decision.reason.isEmail()) {
-      throw new Error("Email validation failed");
-    }
-    if (decision.reason.isRateLimit()) {
-      throw new Error("Rate limit exceeded");
-    }
-    if (decision.reason.isShield()) {
-      throw new Error("Shield validation failed");
-    }
-  }
-
-  return authHandlers.POST(req);
-};
+export const {GET} = authHandlers;
