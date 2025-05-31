@@ -1,0 +1,36 @@
+'use server';
+
+import { apiFetch, getEnv, withErrorHandling } from "@/lib/utils";
+import { headers } from "next/headers";
+import { auth } from "@/lib/auth";
+import { BUNNY } from "@/constants";
+
+const VIDEO_STREAM_BASE_URL = BUNNY.STREAM_BASE_URL;
+const THUMBNAIL_STORAGE_BASE_URL = BUNNY.STORAGE_BASE_URL;
+const THUMBNAIL_CDN_URL = BUNNY.CDN_URL;
+const BUNNY_LIBRARY_ID = getEnv("BUNNY_LIBRARY_ID");
+
+//Helper Functions
+const getSessionUserId = async (): Promise<string> => {
+    const session = await auth.api.getSession({headers: await headers()});
+
+    if(!session) throw new Error("Unauthenticated");
+
+    return session.user.id;
+    
+}
+
+//Sever Actions
+
+export const getVideoUploadUrl = withErrorHandling (async () => {
+    await getSessionUserId();
+
+    const videoResponse = await apiFetch<BunnyVideoResponse>(
+    `${VIDEO_STREAM_BASE_URL}/${BUNNY_LIBRARY_ID}/videos`,
+    {
+      method: "POST",
+      bunnyType: "stream",
+      body: { title: "Temp Title", collectionId: "" },
+    }
+  );
+});

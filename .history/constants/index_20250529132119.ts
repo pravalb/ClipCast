@@ -5,7 +5,7 @@ export const BUNNY = {
   STORAGE_BASE_URL: "https://storage.bunnycdn.com/praval-clipcast",
   CDN_URL: "https://praval-clipcast.b-cdn.net",
   TRANSCRIPT_URL: "https://vz-5ade94d7-6c5.b-cdn.net",
-  EMBED_URL: "https://iframe.mediadelivery.net/embed",
+  EMBED_URL: "https://iframe.mediadelivery.net/embed",s
   STREAM_BASE_URL: "https://video.bunnycdn.com/library",
 };
 

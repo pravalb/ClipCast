@@ -1,0 +1,6 @@
+{
+  "databaseURL": "https://Pravallika-Bahadhur-s-workspace-m5m8mi.us-east-1.xata.sh/db/praval_clipcast",
+  "codegen": {
+    "output": "src/xata.ts"
+  }
+}
