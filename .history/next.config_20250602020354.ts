@@ -13,10 +13,10 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "*",
+        hostname: "praval-clipcast.b-cdn.net", 
         port: "",
         pathname: "/**",
-      }   
+      },
     ],
   },
 

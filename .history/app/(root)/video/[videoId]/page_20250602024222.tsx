@@ -12,7 +12,7 @@ const page = async({params}: Params) => {
   if(!video) redirect('/404')
   return (
     <main className='wrapper page'>
-      <VideoDetailHeader {...video} userImg={user?.image} username={user?.name} ownerId={video.userId}/>
+      <VideoDetailHeader {...video}/>
 
       <section className='video-details'>
         <div className='content'>

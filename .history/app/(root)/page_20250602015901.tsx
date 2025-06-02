@@ -14,20 +14,15 @@ const Page = async ({searchParams}: SearchParams) => {
 
     <main className='wrapper page'>
       <Header title="All Videos" subHeader='Public Library'/>
-      {videos?.length > 0 ? (
+      {videos.length > 0 ? (
         <section className="video-grid">
           {videos.map(({ video, user }) => (
             <VideoCard
-              key={video.id}
-              id={video.videoId}
-              title={video.title}
+              key={video.id} 
+              {...video}
               thumbnail={video.thumbnailUrl}
-              createdAt={video.createdAt}
               userImg={user?.image ?? ""}
               username={user?.name ?? "Guest"}
-              views={video.views}
-              visibility={video.visibility}
-              duration={video.duration}
             />
           ))}
         </section>

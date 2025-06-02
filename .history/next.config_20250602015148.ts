@@ -1,14 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-
-  typescript: {
-  ignoreBuildErrors: true,
-  },
-
   images: {
     remotePatterns: [
       {
@@ -16,14 +8,8 @@ const nextConfig: NextConfig = {
         hostname: "*",
         port: "",
         pathname: "/**",
-      }   
+      },
     ],
-  },
-
-  experimental: {
-    serverActions: {
-      bodySizeLimit: "50mb",
-    },
   },
 };
 
